@@ -24,6 +24,7 @@ async function run(){
         const database = client.db('hangout-Tour');
         const packagesCollection = database.collection('packages');
         const bookingCollection = database.collection('booking');
+        const reviewCollection = database.collection('blogs');
       
         ///POST API
         app.post('/packages', async (req,res)=>{
@@ -43,6 +44,17 @@ async function run(){
             const result = await bookingCollection.insertOne(booking)
             console.log(result);
             res.send(result);
+        })
+
+        ///post for blogs
+        app.post('/reviews', async (req,res)=>{
+            console.log(req.body);
+            console.log('blog connected');
+            const review = req.body;
+            const result = await reviewCollection.insertOne(review);
+            console.log(result);
+            res.send(result);
+
         })
         //get my order
         app.get('/booking/:email',async(req,res)=>{
