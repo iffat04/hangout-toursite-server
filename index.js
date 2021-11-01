@@ -65,7 +65,25 @@ async function run(){
             console.log(result)
             res.send(result)
         })
-      
+
+        ///get all orders
+        app.get('/booking',async(req,res)=>{
+            const cursor = bookingCollection.find({});
+            const order = await cursor.toArray();
+            res.send(order);
+            console.log('get success')
+        })
+         
+        ///get reviews
+        app.get('/reviews',async (req,res)=>{
+            const cursor = reviewCollection.find({});
+            const reviews = await cursor.toArray();
+            res.send(reviews);
+            console.log('get success')
+        })
+
+    
+        
 
         ///GET API
         app.get('/packages', async (req,res)=>{
